@@ -1,0 +1,18 @@
+{
+  "build": "Mochi native bridge / WebKitty original interface",
+  "source_mochi_zip": "Mochi_v0.4.4R3_PS4_Compatibility.zip",
+  "source_webkitty_zip": "webkitty.zip",
+  "original_webkitty_files_unchanged": 117,
+  "original_mochi_files_unchanged": 16,
+  "original_mochi_index_saved_as": "MOCHI_ORIGINAL_INDEX_R3.html",
+  "changed_source_files": [
+    "index.html"
+  ],
+  "missing_referenced_files": [
+    "webkitty/src/kpatches/1402.bin"
+  ],
+  "webkitty_sha256": "f51d9608432a0e2d8e2b1d9ae4949b1759c3ec911f952d3ea20ae92d8ad607ca",
+  "mochi_r3_sha256": "2f1013ab5ad6579f6fe2a3393a43a8401ef5b263b360ec17187599f6d6866d0e",
+  "kernel_exploit_verified": false,
+  "hardware_tested": false
+}

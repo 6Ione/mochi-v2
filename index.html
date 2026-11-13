@@ -1,42 +1,30 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>MOCHI | 14.02 Kernel Branch</title>
+<!-- HTML | index.html | PS4 WebKit browser | Mochi 14.02 v0.4.4-R3 userland-only launcher -->
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mochi · v0.4.4-R3 Research Baseline</title><meta name="theme-color" content="#141428">
+<link rel="stylesheet" href="assets/mochi-launch.css?v=044r3">
 <style>
-*{box-sizing:border-box}body{margin:0;background:#090e17;color:#e9edf6;font-family:Arial,sans-serif;line-height:1.48}main{max-width:800px;margin:0 auto;padding:24px 18px 45px}.kicker{color:#81d5d4;letter-spacing:.2em;font-size:12px;font-weight:bold}.head{font-size:46px;font-weight:800;letter-spacing:-.06em;margin:12px 0 2px}.lead{color:#9fb2cd;font-size:16px;margin:0 0 24px}.pill{display:inline-block;border:1px solid #25445b;color:#93d8d7;padding:6px 11px;border-radius:30px;font-size:12px;margin:12px 0 26px}.panel{border:1px solid #2b3648;border-radius:15px;background:#141e2e;padding:19px;margin:16px 0}.h2{font-size:18px;font-weight:bold;margin-bottom:8px}.small{font-size:13px;color:#a6b7d0}.warning{color:#ffdca1}.kv{display:flex;justify-content:space-between;border-bottom:1px solid #253044;padding:11px 0;font-size:14px;gap:14px}.kv b{font-family:monospace;color:#a4e1de;overflow-wrap:anywhere}label{display:flex;align-items:flex-start;gap:12px;margin:15px 0;line-height:1.4;font-size:14px}select{background:#0e1726;color:#fff;border:1px solid #324863;border-radius:8px;padding:12px;width:100%;margin-top:6px}input[type=checkbox]{width:20px;height:20px;flex-shrink:0}button{display:block;width:100%;background:#20c0b5;color:#001c1d;border:0;padding:16px;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}a{color:#92d6ff}#msg{min-height:27px;color:#ffdca1;font-size:14px}footer{margin-top:26px;font-size:12px;color:#7789a3}.secondary{display:block;text-align:center;margin:17px auto 0;font-size:13px}
-</style></head><body><main>
-<div class="kicker">MOCHI / KERNEL RESEARCH</div><div class="head">MOCHI<span style="color:#2fd6c7">.</span></div>
-<p class="lead">PlayStation 4 · 14.02 · WebKitty Afterglow integration branch</p><div class="pill">Source-based kernel chain · hardware unverified in this port</div>
-<section class="panel"><div class="h2">Runtime identity</div><div class="kv"><span>Browser firmware</span><b id="fw">checking</b></div><div class="kv"><span>Exploit engine</span><b>WebKitty / SlopKit Afterglow</b></div><div class="kv"><span>Mochi R3 engine</span><b>Preserved separately</b></div><div class="kv"><span>Execution mode</span><b>Explicit user launch</b></div></section>
-<section class="panel"><div class="h2">Kernel launch</div><p class="small">This uses the WebKitty 14.02 branch and its original kernel implementation; it does not mix Mochi's prior primitive, gadgets, or guessed offsets into that code.</p>
-<div class="small warning">Warning: This code attempts a real kernel exploit and may crash, restart, or destabilize your console. The supplied archive contains no standalone 14.02 kernel patch-set blob referenced by the GoldHEN loader, so GoldHEN loading may fail even after kernel entry.</div>
-<div style="margin-top:16px;font-size:14px">Payload selection</div><select id="payload"><option value="goldhen_v2.4b18.14.bin">GoldHEN 2.4b18.14 (bundled WebKitty payload)</option><option value="goldhen_v2.4b18.13.bin">GoldHEN 2.4b18.13 (bundled WebKitty payload)</option></select>
-<label><input type="checkbox" id="accept"><span>I understand that this will execute an unverified-on-my-console kernel chain, and I will not retry after a crash.</span></label>
-<button id="launch" disabled>Launch 14.02 kernel chain</button><p id="msg" aria-live="polite"></p>
+.shell{max-width:900px}.masthead{height:80px}.control-panel{margin:25px 0}.mode-list{padding:20px}
+.mode{padding:22px 16px}.btn{display:inline-block;font-size:16px;min-width:184px;padding:17px 19px}
+.hero{display:flex;min-height:120px;gap:18px;padding:22px 4px}.hero h1{font-size:32px;margin:8px 0}.hero p{font-size:14px}
+.hero-mascot{width:110px;height:115px;flex:0 0 110px}.hero-mascot img{max-height:108px}
+@media(max-width:650px){.hero-mascot{display:none}.mode{flex-wrap:wrap}.btn{width:100%}}
+</style></head><body class="landing"><div class="shell">
+<header class="masthead"><div class="brand"><span class="brand-mark"><img src="assets/mochi-icon.png" alt=""></span><span>Mochi<small>PS4 14.02 · RESEARCH BASELINE</small></span></div><span class="chip">v0.4.4-R3</span></header>
+<main><div class="hero"><div><div class="eyebrow">PRESERVED v0.4.4 USERLAND ENGINE</div><h1>14.02 userland evidence.</h1><p>Same tested WebKit engine. Compare the 14.00 / 14.02 profile, then optionally repeat the userland proof. No kernel trigger or HEN launch.</p></div><div class="hero-mascot"><img src="assets/mochi-mascot.png" alt="Mochi"></div></div>
+<section class="control-panel"><div class="section-head"><div><span class="kicker">01 / CHOOSE A CHECK</span><h2>Three independent tests</h2></div><span class="stage-pill">MANUAL START</span></div><div class="mode-list">
+<article class="mode recommended"><div class="mode-icon">i</div><div class="mode-body"><div class="mode-name">0. Check firmware profile</div><p>Passive. Compare configured 14.00 and 14.02 WebKit fields without running the exploit.</p></div><a class="btn btn-soft" href="./profile.html?v=044r3">Check profile</a></article>
+
+<article class="mode recommended"><div class="mode-icon">◇</div><div class="mode-body"><div class="mode-name">1. WebKit primitive</div><p>Test the v0.4.4 browser read primitive and base resolution. Host and native stages not reached.</p></div><a class="btn btn-soft" href="./launch.html?stop=primitive&amp;diag=full&amp;log=1&amp;attempts=8&amp;retry=0&amp;v=044r3">Test WebKit ↗</a></article>
+<article class="mode recommended"><div class="mode-icon">⌁</div><div class="mode-body"><div class="mode-name">2. Validate host</div><p>Verify module alignment, 15 gadget signatures, and syscall-stub discovery. No native calls.</p></div><a class="btn btn-soft" href="./launch.html?stop=host&amp;diag=full&amp;log=1&amp;attempts=8&amp;retry=0&amp;v=044r3">Validate host ↗</a></article>
+<article class="mode"><div class="mode-icon">◎</div><div class="mode-body"><div class="mode-name">3. Userland proof (native)</div><p>Experimental read-only getpid/getuid calls through the existing userland native bridge. No kernel operations.</p></div><a class="btn btn-line" href="./launch.html?stop=native&amp;diag=full&amp;log=1&amp;attempts=8&amp;retry=0&amp;v=044r3">Run userland proof ↗</a></article>
+</div><div class="note-row danger"><span class="note-icon">!</span><div>v0.4.4's kernel attempt previously caused an unexpected PS4 restart. That route is not present in this launcher or the active engine. The original source is archived separately for offline research. If a system-memory warning appears, stop testing.</div></div></section>
+
+<section class="control-panel" id="webkitty-native" aria-labelledby="webkitty-heading">
+<div class="section-head"><div><span class="kicker">02 / WEBKITTY INTEGRATION</span><h2 id="webkitty-heading">WebKitty, running as WebKitty</h2></div><span class="stage-pill">ORIGINAL ENGINE</span></div>
+<div class="mode-list">
+<article class="mode recommended"><div class="mode-icon">W</div><div class="mode-body"><div class="mode-name">Open the original WebKitty host</div><p>Mochi links to the bundled WebKitty interface. WebKitty detects firmware, chooses its exploit chain, sets the payload session state, and owns its launch, retry and cleanup behavior. Mochi does not run a second exploit engine.</p></div><a class="btn btn-soft" href="./webkitty/index.html">Open WebKitty</a></article>
+</div>
+<div class="note-row danger"><span class="note-icon">!</span><div>The previous Mochi wrapper forced storage values and launched directly into WebKitty's exploit page. This integration does neither. Your prior attempt forced a console restart: do not launch another kernel attempt until you have checked the payload/patch dependencies and understand the risk. If the original WebKitty page asks to switch from HTTPS to HTTP, decline to remain on your own GitHub Pages deployment; otherwise it redirects to the public WebKitty domain. The supplied archive lacks <code>src/kpatches/1402.bin</code>; GoldHEN startup may be blocked. Browser results do not prove kernel privileges.</div></div>
 </section>
-<section class="panel"><div class="h2">Evidence capture</div><p class="small">After launch, photograph the full terminal, particularly the firmware selection, kernel trigger outcome, any kernel verification, payload result, and final status. A success string is not independent proof of kernel control.</p><a class="secondary" href="./webkitty-original.html">Open original WebKitty interface</a></section>
-<footer>WebKitty and SlopKit/Afterglow authors retain attribution for their bundled files. Mochi wrapper only; no claim of independently verified 14.02 compatibility.</footer>
-</main><script>
-(function(){
- var fw=(navigator.userAgent.match(/PlayStation 4\/([0-9]+\.[0-9]+)/)||[])[1]||'unknown';
- document.getElementById('fw').textContent=fw;
- var accept=document.getElementById('accept'), button=document.getElementById('launch'),msg=document.getElementById('msg');
- accept.onchange=function(){button.disabled=!accept.checked||fw!=='14.02'};
- if(fw!=='14.02') msg.textContent='Firmware 14.02 is required. No kernel launch is permitted on '+fw+'.';
- button.onclick=function(){
-  if(fw!=='14.02'||!accept.checked)return;
-  button.disabled=true;
-  try {
-   // WebKitty barebone runner requires these values and a navigation from index.html.
-   localStorage.setItem('bareboneJB','true');
-   localStorage.setItem('exploitChain','9');
-   localStorage.setItem('autoJb','false');
-   localStorage.setItem('autoJbRetry','false');
-   sessionStorage.setItem('autoJb','false');
-   sessionStorage.setItem('autoJbRetry','false');
-   sessionStorage.setItem('payload_path','./includes/payloads/HEN/'+document.getElementById('payload').value);
-   msg.textContent='Navigating to original WebKitty kernel runner; do not refresh or retry automatically.';
-   window.location.href='./exploit.html';
-  } catch(e) {button.disabled=false;msg.textContent='Launch initialization failed: '+e.message;}
- };
-})();
-</script></body></html>
+</main><footer><span>Mochi 14.02 · v0.4.4-R3</span><span>WebKitty hosted separately · original files unchanged.</span></footer></div></body></html>
