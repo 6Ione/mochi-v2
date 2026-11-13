@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>MOCHI | 14.02 Kernel Branch</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#090e17;color:#e9edf6;font-family:Arial,sans-serif;line-height:1.48}main{max-width:800px;margin:0 auto;padding:24px 18px 45px}.kicker{color:#81d5d4;letter-spacing:.2em;font-size:12px;font-weight:bold}.head{font-size:46px;font-weight:800;letter-spacing:-.06em;margin:12px 0 2px}.lead{color:#9fb2cd;font-size:16px;margin:0 0 24px}.pill{display:inline-block;border:1px solid #25445b;color:#93d8d7;padding:6px 11px;border-radius:30px;font-size:12px;margin:12px 0 26px}.panel{border:1px solid #2b3648;border-radius:15px;background:#141e2e;padding:19px;margin:16px 0}.h2{font-size:18px;font-weight:bold;margin-bottom:8px}.small{font-size:13px;color:#a6b7d0}.warning{color:#ffdca1}.kv{display:flex;justify-content:space-between;border-bottom:1px solid #253044;padding:11px 0;font-size:14px;gap:14px}.kv b{font-family:monospace;color:#a4e1de;overflow-wrap:anywhere}label{display:flex;align-items:flex-start;gap:12px;margin:15px 0;line-height:1.4;font-size:14px}select{background:#0e1726;color:#fff;border:1px solid #324863;border-radius:8px;padding:12px;width:100%;margin-top:6px}input[type=checkbox]{width:20px;height:20px;flex-shrink:0}button{display:block;width:100%;background:#20c0b5;color:#001c1d;border:0;padding:16px;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}a{color:#92d6ff}#msg{min-height:27px;color:#ffdca1;font-size:14px}footer{margin-top:26px;font-size:12px;color:#7789a3}.secondary{display:block;text-align:center;margin:17px auto 0;font-size:13px}
+</style></head><body><main>
+<div class="kicker">MOCHI / KERNEL RESEARCH</div><div class="head">MOCHI<span style="color:#2fd6c7">.</span></div>
+<p class="lead">PlayStation 4 · 14.02 · WebKitty Afterglow integration branch</p><div class="pill">Source-based kernel chain · hardware unverified in this port</div>
+<section class="panel"><div class="h2">Runtime identity</div><div class="kv"><span>Browser firmware</span><b id="fw">checking</b></div><div class="kv"><span>Exploit engine</span><b>WebKitty / SlopKit Afterglow</b></div><div class="kv"><span>Mochi R3 engine</span><b>Preserved separately</b></div><div class="kv"><span>Execution mode</span><b>Explicit user launch</b></div></section>
+<section class="panel"><div class="h2">Kernel launch</div><p class="small">This uses the WebKitty 14.02 branch and its original kernel implementation; it does not mix Mochi's prior primitive, gadgets, or guessed offsets into that code.</p>
+<div class="small warning">Warning: This code attempts a real kernel exploit and may crash, restart, or destabilize your console. The supplied archive contains no standalone 14.02 kernel patch-set blob referenced by the GoldHEN loader, so GoldHEN loading may fail even after kernel entry.</div>
+<div style="margin-top:16px;font-size:14px">Payload selection</div><select id="payload"><option value="goldhen_v2.4b18.14.bin">GoldHEN 2.4b18.14 (bundled WebKitty payload)</option><option value="goldhen_v2.4b18.13.bin">GoldHEN 2.4b18.13 (bundled WebKitty payload)</option></select>
+<label><input type="checkbox" id="accept"><span>I understand that this will execute an unverified-on-my-console kernel chain, and I will not retry after a crash.</span></label>
+<button id="launch" disabled>Launch 14.02 kernel chain</button><p id="msg" aria-live="polite"></p>
+</section>
+<section class="panel"><div class="h2">Evidence capture</div><p class="small">After launch, photograph the full terminal, particularly the firmware selection, kernel trigger outcome, any kernel verification, payload result, and final status. A success string is not independent proof of kernel control.</p><a class="secondary" href="./webkitty-original.html">Open original WebKitty interface</a></section>
+<footer>WebKitty and SlopKit/Afterglow authors retain attribution for their bundled files. Mochi wrapper only; no claim of independently verified 14.02 compatibility.</footer>
+</main><script>
+(function(){
+ var fw=(navigator.userAgent.match(/PlayStation 4\/([0-9]+\.[0-9]+)/)||[])[1]||'unknown';
+ document.getElementById('fw').textContent=fw;
+ var accept=document.getElementById('accept'), button=document.getElementById('launch'),msg=document.getElementById('msg');
+ accept.onchange=function(){button.disabled=!accept.checked||fw!=='14.02'};
+ if(fw!=='14.02') msg.textContent='Firmware 14.02 is required. No kernel launch is permitted on '+fw+'.';
+ button.onclick=function(){
+  if(fw!=='14.02'||!accept.checked)return;
+  button.disabled=true;
+  try {
+   // WebKitty barebone runner requires these values and a navigation from index.html.
+   localStorage.setItem('bareboneJB','true');
+   localStorage.setItem('exploitChain','9');
+   localStorage.setItem('autoJb','false');
+   localStorage.setItem('autoJbRetry','false');
+   sessionStorage.setItem('autoJb','false');
+   sessionStorage.setItem('autoJbRetry','false');
+   sessionStorage.setItem('payload_path','./includes/payloads/HEN/'+document.getElementById('payload').value);
+   msg.textContent='Navigating to original WebKitty kernel runner; do not refresh or retry automatically.';
+   window.location.href='./exploit.html';
+  } catch(e) {button.disabled=false;msg.textContent='Launch initialization failed: '+e.message;}
+ };
+})();
+</script></body></html>
