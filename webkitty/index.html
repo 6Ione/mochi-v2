@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <title>WebKitty</title>
-    <meta name="description" content="WebKitty is a user-friendly, feature-rich PS4 exploit host for 4.50-5.07 & 6.70 - 14.02." />
+    <title>Mochi v1 · PS4 14.02 WebKit</title>
+    <meta name="description" content="Mochi v1 · PS4 14.02 WebKit · GoldHEN and PS4HEN." />
     <meta name="author" content="ArabPixel">
     <meta name="keywords"
         content="PS4, PlayStation 4, webkit exploit, jailbreak, psfree lapse, cssfontface, WebKitty, PSFree Enhanced, cssfontface, lapse, netctrl, slopkit, relapse">
@@ -13,7 +13,7 @@
 
     <!-- Facebook / Discord / WhatsApp -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="WebKitty">
+    <meta property="og:title" content="Mochi v1">
     <meta property="og:description"
         content="WebKitty is a user-friendly, feature-rich PS4 exploit host for 4.50-5.07 & 6.70 - 14.02.">
     <meta property="og:image" content="./includes/assets/icons/webkitty.svg">
@@ -21,13 +21,14 @@
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="WebKitty">
+    <meta name="twitter:title" content="Mochi v1">
     <meta name="twitter:description"
         content="WebKitty is a user-friendly, feature-rich PS4 exploit host for 4.50-5.07 & 6.70 - 14.02.">
     <meta name="twitter:image" content="./includes/assets/icons/webkitty.svg">
     <link rel="icon" href="./includes/assets/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" id="main-stylesheet" href="">
     <link rel="stylesheet" id="color-stylesheet" href="">
+    <link rel="stylesheet" href="./includes/css/mochi-v1.css?v=1003">
     <script>
         // Prevent "Theme Flash" by applying the href before the body renders
         var savedTheme = localStorage.getItem('theme') || "index";
@@ -52,7 +53,6 @@
 </head>
 
 <body class="bg-gray-900 text-white">
-<a href="../mochi.html" aria-label="Mochi research diagnostics" style="position:fixed;right:8px;bottom:8px;z-index:1000;padding:7px 11px;border:1px solid #64748b;border-radius:9px;background:#111827;color:#e5e7eb;font:12px sans-serif;text-decoration:none;opacity:.9">Mochi diagnostics</a>
     <main class="mainContainer">
         <section id="initial-screen" class="relative flex flex-col items-center justify-center min-h-screen p-6 transition-opacity duration-700
             opacity-100">
@@ -99,7 +99,12 @@
                 </button>
             </header>
 
-            <!-- PS Button -->
+            <div class="mochi-intro" aria-label="Mochi v1">
+ <div class="mochi-welcome">✿ &nbsp; A little cozy magic</div>
+ <h1>Mochi <span>v1</span></h1>
+ <p>PS4 14.02 WebKit</p>
+</div>
+<!-- PS Button -->
             <button id="pslogo">
                 <div id="ps-logo-container"
                     class="relative group cursor-pointer flex flex-col items-center justify-center p-8 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 transform hover:scale-102">
@@ -111,6 +116,7 @@
                             </path>
                         </g>
                     </svg>
+                    <img class="mochi-start-mascot" src="../assets/mochi-mascot.png" alt="Start Mochi jailbreak">
                 </div>
             </button>
             <h3 class="text-white/70 text-lg mt-4" id="click-to-start-text"></h3>
@@ -120,7 +126,8 @@
                 Stop Auto Jailbreak
             </button>
 
-            <!-- Compatibility message -->
+            <div class="mochi-start-hint">✦ &nbsp; Press the mochi to begin &nbsp; ✦</div>
+<!-- Compatibility message -->
             <p id="PS4FW" class="text-white/70 text-lg mt-4 mb-6">-</p>
             <a class="hidden secondHostBtn bg-blue-600 hover:bg-blue-700 p-3 rounded font-semibold disabled:opacity-50 transition-colors text-white text-center"
                 href="./index.html" style="text-decoration: none;">
@@ -131,7 +138,7 @@
 
             <!-- Jailbreak flavor options -->
             <div id="choosejb-initial" class="bg-gray-800 p-6 rounded-lg shadow-xl text-center">
-                <h3 class="text-xl font-semibold mb-4">Choose your HEN flavor</h3>
+                <h3 class="text-xl font-semibold mb-4">Choose your HEN</h3>
                 <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 rtl:gap-4 sm:rtl:gap-8">
                     <label
                         class="flex items-center px-4 py-2 rounded-lg bg-gray-700/60 hover:bg-gray-700 transition-colors cursor-pointer shadow border-2 border-transparent focus-within:border-blue-500 w-full sm:w-auto mb-2 sm:mb-0"
@@ -170,12 +177,19 @@
                 <!-- Exploit console panel -->
                 <div id="exploit-status-panel" class="gap-4 bg-gray-800 p-6 rounded-lg flex flex-col h-full w-full">
                     <div class="flex justify-between w-auto" style="align-items: baseline;">
-                        <h2 class="text-xl font-semibold mb-4" id="state">Exploit status</h2>
+                        <h2 class="text-xl font-semibold mb-4" id="state">Mochi status</h2>
                         <button id="successRate" style="white-space: nowrap;"
                             class="text-base font-semibold duration-300 transform hover:scale-102 hover:border-bottom cursor-pointer"
                             onclick="clearStats()">
                             Success rate
                         </button>
+                    </div>
+                    <div class="mochi-status-card" aria-live="polite">
+                      <div class="mochi-status-flower">✿</div>
+                      <div class="mochi-status-eyebrow">MOCHI IS HERE FOR YOU</div>
+                      <div id="mochi-friendly-progress">Ready to begin</div>
+                      <div class="mochi-status-trail"><i></i><i></i><i></i></div>
+                      <div class="mochi-status-caption">Simple progress, no noisy console dump.</div>
                     </div>
                     <div id="DebugConsole"
                         class="flex-grow min-h-0 min-h-[150px] bg-black/50 p-4 rounded-lg overflow-y-auto mb-4 text-xs font-mono"
@@ -810,6 +824,7 @@
             }
         });
     </script>
+<script src="./includes/js/mochi-progress.js?v=1003"></script>
 </body>
 
 </html>
