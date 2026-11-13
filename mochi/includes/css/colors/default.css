@@ -1,0 +1,150 @@
+/* ============================================================
+   colors/default.css · Mochi · Mochi Palette
+   Warm Mochi aesthetic — pink, lavender, peach, cream
+   ============================================================ */
+
+/* ── Mochi color tokens ────────────────────────────────── */
+:root {
+  --m-bg:       #1E1120;
+  --m-panel:    #2A1830;
+  --m-panel2:   #341E3E;
+  --m-panel3:   #3D2548;
+  --m-border:   rgba(248,127,171,0.25);
+  --m-rose:     #F87FAB;
+  --m-rose2:    #F45E97;
+  --m-lav:      #C4A8E8;
+  --m-lav2:     #A98DD6;
+  --m-peach:    #FFB285;
+  --m-mint:     #7ECEC7;
+  --m-warn:     #FFD166;
+  --m-danger:   #FF7098;
+  --m-copy:     #FFE8F4;
+  --m-muted:    #C49FCE;
+  --m-soft:     #9B6B9B;
+}
+
+/* ── PS Logo ────────────────────────────────────────────── */
+#ps-logo { fill: #F87FAB !important }
+
+/* ── Initial screen compact variant ────────────────────── */
+#initial-screen.compact {
+  background-color: #2A1830 !important;
+}
+
+/* ── Radio / Checkbox ───────────────────────────────────── */
+input[type="radio"]:checked {
+  border: none;
+  background: var(--m-rose);
+}
+.fwSelected {
+  border-radius: 8px;
+  background-color: rgba(248,127,171,0.25);
+  color: var(--m-copy);
+}
+
+/* ── Scrollbars ─────────────────────────────────────────── */
+::-webkit-scrollbar-track { background-color: transparent }
+::-webkit-scrollbar-thumb {
+  background: var(--m-rose);
+  border-radius: 10px;
+}
+
+/* ── Payload category chips ─────────────────────────────── */
+.category-tools {
+  background-color: rgba(126,206,199,0.18);
+  color: #9EDECA;
+  border: none !important;
+}
+.category-advanced {
+  background-color: rgba(255,112,152,0.18);
+  color: #FF9AB5;
+}
+.category-linux {
+  background-color: rgba(196,168,232,0.2);
+  color: var(--m-lav);
+  border: none !important;
+}
+.category-homebrew {
+  background-color: rgba(255,178,133,0.2) !important;
+  color: var(--m-peach) !important;
+  border: none !important;
+}
+
+/* ── Background Colors ──────────────────────────────────── */
+.bg-gray-900 { background-color: var(--m-bg) }
+.bg-gray-800 { background-color: var(--m-panel) }
+.bg-gray-700 { background-color: var(--m-panel2) }
+.bg-gray-700\/60 { background-color: rgba(52,30,62,0.6) }
+.bg-black\/50  { background-color: rgba(10,4,15,0.6) }
+.bg-white\/5   { background-color: rgba(255,220,235,0.05) }
+.bg-white\/10  { background-color: rgba(255,220,235,0.1) }
+.bg-yellow-600\/20 { background-color: rgba(255,209,102,0.2) }
+.bg-blue-600 { background-color: var(--m-rose) }
+.bg-red-600  { background-color: #C0384A }
+.bg-red-700  { background-color: #9B2535 }
+.bg-gray-50  { background-color: var(--m-panel) }
+
+/* ── Text Colors ────────────────────────────────────────── */
+.text-white      { color: var(--m-copy) }
+.text-white\/70  { color: rgba(255,232,244,0.7) }
+.text-white\/80  { color: rgba(255,232,244,0.8) }
+.text-white\/90  { color: rgba(255,232,244,0.9) }
+.text-yellow-200 { color: var(--m-warn) }
+.text-yellow-200\/80 { color: rgba(255,209,102,0.8) }
+.text-gray-600   { color: var(--m-soft) }
+.text-blue-500   { color: var(--m-rose) }
+
+/* ── Borders ────────────────────────────────────────────── */
+.border {
+  border-width: 1px;
+  border-style: solid;
+  border-color: currentColor;
+}
+.border-2 {
+  border-width: 2px;
+  border-style: solid;
+  border-color: currentColor;
+}
+.border-b {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+.border-white\/20    { border-color: rgba(255,220,235,0.2) }
+.border-blue-500     { border-color: var(--m-rose) }
+.border-yellow-500\/50 { border-color: rgba(255,209,102,0.5) }
+.border-transparent  { border-color: transparent }
+.border-gray-200     { border-color: rgba(248,127,171,0.3) }
+.border-gray-700     { border-color: rgba(248,127,171,0.2) }
+
+/* ── Hover States ───────────────────────────────────────── */
+.hover\:bg-gray-700:hover { background-color: var(--m-panel2) }
+.hover\:text-white:hover  { color: var(--m-copy) }
+.hover\:bg-white\/10:hover { background-color: rgba(255,220,235,0.1) }
+.hover\:bg-blue-700:hover  { background-color: var(--m-rose2) }
+.hover\:text-gray-600:hover { color: var(--m-soft) }
+.hover\:border-gray-300:hover { border-color: rgba(248,127,171,0.4) }
+.hover\:bg-blue-500\/40:hover { background-color: rgba(248,127,171,0.4) }
+
+/* ── Focus / Ring ───────────────────────────────────────── */
+.focus-within\:border-blue-500:focus-within { border-color: var(--m-rose) }
+.focus\:ring-2:focus      { box-shadow: 0 0 0 2px rgba(196,168,232,.6) }
+.focus\:ring-blue-400:focus { box-shadow: 0 0 0 2px rgba(196,168,232,.6) }
+
+/* ── Accent ─────────────────────────────────────────────── */
+.accent-blue-500 { accent-color: var(--m-rose) }
+
+/* ── Tabs ───────────────────────────────────────────────── */
+.tabs ul { border-color: rgba(248,127,171,0.25) }
+.tabs button {
+  border-color: transparent;
+  color: var(--m-muted);
+}
+.tabs button[aria-selected="true"] {
+  border-color: var(--m-rose);
+  color: var(--m-rose);
+  border-bottom: 2px solid var(--m-rose);
+}
+.tabs button:not([aria-selected="true"]):hover {
+  color: var(--m-copy);
+  border-color: rgba(248,127,171,0.4);
+}

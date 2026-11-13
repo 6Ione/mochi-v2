@@ -1,0 +1,492 @@
+/* ============================================================
+   layouts/index.css · Mochi · Mochi Layout
+   Warm Mochi aesthetic — cozy, rounded, cute
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
+
+/* ── Reset ──────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+body {
+  font-family: 'Nunito', sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  /* Mochi deep plum background */
+  background-color: #1E1120;
+  color: #FFE8F4;
+}
+
+/* ── Dot-pattern overlay ────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(248,127,171,.1) 1px, transparent 1px),
+    radial-gradient(circle, rgba(196,168,232,.07) 1px, transparent 1px);
+  background-size: 32px 32px, 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+/* ── Soft ambient halos ─────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  width: 500px; height: 500px;
+  right: -120px; top: -180px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(196,168,232,.18) 0%, transparent 70%);
+  filter: blur(40px);
+}
+
+.mainContainer {
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Screens ────────────────────────────────────────────── */
+#initial-screen,
+#exploit-main-screen {
+  height: 100vh;
+}
+
+select option {
+  background-color: #2A1830;
+}
+
+/* ── Inputs / labels / svg ──────────────────────────────── */
+input, svg, label {
+  margin: 0 7px !important;
+  cursor: pointer;
+}
+
+/* ── Utility grid ───────────────────────────────────────── */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── Custom radio ───────────────────────────────────────── */
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px; height: 18px;
+  border: 2px solid rgba(248,127,171,.5);
+  border-radius: 50%;
+  background: rgba(255,220,235,.08);
+  cursor: pointer;
+  -webkit-transition: background .15s ease, border-color .15s ease;
+  transition: background .15s ease, border-color .15s ease;
+}
+input[type="radio"]:checked {
+  background: #F87FAB;
+  border-color: #F87FAB;
+}
+
+/* ── Payload row ────────────────────────────────────────── */
+.payload { margin-bottom: 14px }
+
+/* ── Exploit container ──────────────────────────────────── */
+#exploitContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  height: 100vh !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+  gap: 14px;
+}
+
+/* ── Tabs ───────────────────────────────────────────────── */
+.tabs {
+  -webkit-box-shadow: 0px 12px 8px -8px rgba(248,127,171,.12);
+  box-shadow: 0px 12px 8px -8px rgba(248,127,171,.12);
+  padding: 10px 0;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px }
+::-webkit-scrollbar-track { background-color: transparent }
+::-webkit-scrollbar-thumb {
+  background: rgba(248,127,171,.5);
+  border-radius: 10px;
+}
+
+/* ── Mochi Panel base ───────────────────────────────────── */
+#exploit-status-panel,
+#payloadsSection {
+  border-radius: 22px !important;
+  border: 1px solid rgba(248,127,171,.2) !important;
+  background: #2A1830 !important;
+  box-shadow: 0 8px 28px rgba(10,4,15,.35) !important;
+}
+
+/* ── Mochi Play Button ──────────────────────────────────── */
+#exploitRun {
+  background: linear-gradient(110deg, #F87FAB, #C4A8E8) !important;
+  border-radius: 50px !important;
+  box-shadow: 0 4px 16px rgba(248,127,171,.3) !important;
+  color: #2D1B2E !important;
+  padding: 10px 16px !important;
+  -webkit-transition: filter .12s ease !important;
+  transition: filter .12s ease !important;
+}
+#exploitRun:hover { filter: brightness(1.1) }
+
+/* ── PS Logo container ──────────────────────────────────── */
+#ps-logo-container {
+  background: rgba(248,127,171,.08) !important;
+  border: 1px solid rgba(248,127,171,.25) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 40px rgba(248,127,171,.2) !important;
+  -webkit-transition: box-shadow .3s ease, background .3s ease !important;
+  transition: box-shadow .3s ease, background .3s ease !important;
+}
+#ps-logo-container:hover {
+  background: rgba(248,127,171,.15) !important;
+  box-shadow: 0 0 60px rgba(248,127,171,.35) !important;
+}
+
+/* ── HEN selector panel ─────────────────────────────────── */
+#choosejb-initial {
+  border-radius: 20px !important;
+  border: 1px solid rgba(248,127,171,.25) !important;
+  background: rgba(42,24,48,.9) !important;
+  box-shadow: 0 8px 24px rgba(10,4,15,.4) !important;
+}
+
+/* ── Header buttons (settings / about / theme) ──────────── */
+.settings-btn,
+.about-btn,
+.theme-btn {
+  border-radius: 12px !important;
+  border: 1px solid rgba(248,127,171,.2) !important;
+  background: rgba(42,24,48,.9) !important;
+  color: rgba(255,232,244,.8) !important;
+  -webkit-transition: background .15s ease, border-color .15s ease !important;
+  transition: background .15s ease, border-color .15s ease !important;
+}
+.settings-btn:hover,
+.about-btn:hover,
+.theme-btn:hover {
+  background: rgba(248,127,171,.18) !important;
+  border-color: rgba(248,127,171,.4) !important;
+  color: #FFE8F4 !important;
+}
+
+/* ── Update Cache button ────────────────────────────────── */
+#updateCache {
+  border-radius: 12px !important;
+  border: 1px solid rgba(248,127,171,.2) !important;
+  background: rgba(42,24,48,.9) !important;
+  color: rgba(255,232,244,.8) !important;
+  font-weight: 700 !important;
+  padding: 8px 14px !important;
+  font-size: 12px !important;
+  -webkit-transition: background .15s ease !important;
+  transition: background .15s ease !important;
+}
+#updateCache:hover {
+  background: rgba(248,127,171,.18) !important;
+}
+
+/* ── Scroll-down indicator ──────────────────────────────── */
+#scrollDown {
+  color: rgba(248,127,171,.6) !important;
+  -webkit-animation: bounce 1.6s ease-in-out infinite !important;
+  animation: bounce 1.6s ease-in-out infinite !important;
+  background: none !important;
+  border: none !important;
+}
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: translateY(0) }
+  50% { -webkit-transform: translateY(6px) }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(6px) }
+}
+
+/* ── Stop auto jailbreak button ─────────────────────────── */
+#stopAutoJb {
+  border-radius: 50px !important;
+  background: linear-gradient(110deg, #FF7098, #C0384A) !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(255,112,152,.3) !important;
+}
+
+/* ── Debug console ──────────────────────────────────────── */
+#DebugConsole {
+  background: rgba(10,4,15,.6) !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(248,127,171,.15) !important;
+  color: #C49FCE !important;
+}
+
+/* ── State heading ──────────────────────────────────────── */
+#state {
+  font-weight: 800 !important;
+  font-size: 17px !important;
+  color: #FFE8F4 !important;
+}
+
+/* ── Success rate button ────────────────────────────────── */
+#successRate {
+  color: rgba(196,168,232,.8) !important;
+  font-size: 13px !important;
+}
+
+/* ── Payload items ──────────────────────────────────────── */
+.payload-item,
+[class*="payload"] button,
+#payloadsGrid button {
+  border-radius: 12px !important;
+  -webkit-transition: background .12s ease !important;
+  transition: background .12s ease !important;
+}
+
+/* ── Send custom payload button ─────────────────────────── */
+#sendCustomPayloadBtn {
+  background: linear-gradient(110deg, #F87FAB, #C4A8E8) !important;
+  border-radius: 10px !important;
+  color: #2D1B2E !important;
+  font-weight: 800 !important;
+  box-shadow: 0 3px 10px rgba(248,127,171,.25) !important;
+}
+
+/* ── Custom payload file input ──────────────────────────── */
+#customPayloadInput {
+  background: rgba(42,24,48,.9) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(248,127,171,.25) !important;
+  color: #FFE8F4 !important;
+}
+
+/* ── FW select ──────────────────────────────────────────── */
+#ps4FwSelect {
+  color: #FFE8F4 !important;
+  font-weight: 700 !important;
+}
+
+/* ── PS4 IP input ───────────────────────────────────────── */
+#ps4IpInput {
+  background: linear-gradient(110deg, #F87FAB, #A98DD6) !important;
+  border-radius: 10px !important;
+  color: #2D1B2E !important;
+  font-weight: 800 !important;
+}
+
+/* ── Mochi diagnostics link ─────────────────────────────── */
+a[href*="mochi.html"] {
+  border-radius: 12px !important;
+  background: rgba(42,24,48,.95) !important;
+  border: 1px solid rgba(248,127,171,.3) !important;
+  color: rgba(255,232,244,.85) !important;
+  font-family: 'Nunito', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  -webkit-transition: background .15s ease !important;
+  transition: background .15s ease !important;
+}
+a[href*="mochi.html"]:hover {
+  background: rgba(248,127,171,.2) !important;
+}
+
+/* ============================================================
+   Tailwind-replacement utilities
+   (kept identical to original — only size/spacing classes)
+   ============================================================ */
+
+/* Font Sizes */
+.text-xs   { font-size: 0.75rem }
+.text-sm   { font-size: 0.875rem }
+.text-base { font-size: 1rem }
+.text-lg   { font-size: 1.125rem }
+.text-xl   { font-size: 1.25rem }
+.text-2xl  { font-size: 1.5rem }
+
+/* Font Weights */
+.font-medium  { font-weight: 500 }
+.font-semibold { font-weight: 600 }
+.font-bold    { font-weight: 700 }
+.font-mono    { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace }
+
+/* Text */
+.text-center { text-align: center }
+.text-start  { text-align: start }
+.leading-relaxed { line-height: 1.625 }
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* Display */
+.flex         { display: flex }
+.inline-flex  { display: inline-flex }
+.inline-block { display: inline-block }
+.hidden       { display: none }
+.relative     { position: relative }
+.absolute     { position: absolute }
+
+/* Flex */
+.flex-col    { flex-direction: column }
+.flex-wrap   { flex-wrap: wrap }
+.flex-grow   { flex-grow: 1 }
+.flex-1      { flex: 1 1 0% }
+.items-center     { align-items: center }
+.items-start      { align-items: flex-start }
+.justify-center   { justify-content: center }
+.justify-between  { justify-content: space-between }
+.justify-evenly   { justify-content: space-evenly }
+.justify-around   { justify-content: space-around }
+
+/* Sizing */
+.w-full { width: 100% }
+.h-full { height: 100% }
+.h-10   { height: 2.5rem }
+.w-4    { width: 1rem }
+.h-4    { height: 1rem }
+.w-5    { width: 1.25rem }
+.h-5    { height: 1.25rem }
+.w-32   { width: 8rem }
+.h-32   { height: 8rem }
+.min-h-0       { min-height: 0 }
+.min-h-screen  { min-height: 100vh }
+.max-w-fit     { max-width: fit-content }
+.overflow-y-auto   { overflow-y: auto }
+.overflow-hidden   { overflow: hidden }
+
+/* Spacing */
+.p-1 { padding: 0.25rem }
+.p-2 { padding: 0.5rem }
+.p-3 { padding: 0.75rem }
+.p-4 { padding: 1rem }
+.p-6 { padding: 1.5rem }
+.p-8 { padding: 2rem }
+.px-2 { padding-left: 0.5rem; padding-right: 0.5rem }
+.px-4 { padding-left: 1rem;   padding-right: 1rem }
+.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem }
+.py-2 { padding-top: 0.5rem;  padding-bottom: 0.5rem }
+.mt-2 { margin-top: 0.5rem }
+.mt-4 { margin-top: 1rem }
+.mt-6 { margin-top: 1.5rem }
+.mb-2 { margin-bottom: 0.5rem }
+.mb-4 { margin-bottom: 1rem }
+.mb-6 { margin-bottom: 1.5rem }
+.ml-2 { margin-left: 0.5rem }
+.ml-3 { margin-left: 0.75rem }
+.ml-4 { margin-left: 1rem }
+.space-x-3 > * + * { margin-left: 0.75rem }
+.gap-2 { gap: 0.5rem }
+.gap-4 { gap: 1rem }
+.gap-8 { gap: 2rem }
+.rtl\:space-x-reverse:dir(rtl) > * + * { margin-left: 0; margin-right: 0.75rem }
+.rtl\:gap-4:dir(rtl)  { gap: 1rem }
+.rtl\:gap-8:dir(rtl)  { gap: 2rem }
+
+/* Border radius */
+.rounded    { border-radius: 0.25rem }
+.rounded-lg { border-radius: 14px }
+.rounded-t-lg { border-radius: 14px 14px 0 0 }
+.rounded-full { border-radius: 9999px }
+
+/* Z-index */
+.z-10 { z-index: 10 }
+
+/* Transitions */
+.transition-all      { -webkit-transition: all .15s ease; transition: all .15s ease }
+.transition-colors   { -webkit-transition: color .15s ease, background-color .15s ease, border-color .15s ease; transition: color .15s ease, background-color .15s ease, border-color .15s ease }
+.duration-300        { -webkit-transition-duration: 300ms; transition-duration: 300ms }
+
+/* Transforms */
+.transform { -webkit-transform: translateZ(0); transform: translateZ(0) }
+.hover\:scale-102:hover { -webkit-transform: scale(1.02); transform: scale(1.02) }
+
+/* Opacity */
+.opacity-100 { opacity: 1 }
+.disabled\:opacity-50:disabled { opacity: 0.5 }
+
+/* Shadow */
+.shadow     { box-shadow: 0 2px 6px rgba(10,4,15,.3) }
+.shadow-xl  { box-shadow: 0 12px 32px rgba(10,4,15,.4) }
+
+/* Misc */
+.cursor-pointer { cursor: pointer }
+.sticky { position: sticky }
+.top-0  { top: 0 }
+
+/* Grid (payload container) */
+.md\:grid-cols-2 {
+  /* handled via flex on exploit container */
+}
+
+/* Space */
+.space-y-3 > * + * { margin-top: 0.75rem }
+
+/* Max height for payload grid */
+.max-h-\[calc\(100vh-250px\)\] { max-height: calc(100vh - 250px) }
+
+/* Responsive */
+@media (min-width: 640px) {
+  .sm\:flex-row   { flex-direction: row }
+  .sm\:w-auto     { width: auto }
+  .sm\:mb-0       { margin-bottom: 0 }
+  .sm\:gap-8      { gap: 2rem }
+  .sm\:rtl\:gap-8 { gap: 2rem }
+}
+@media (min-width: 768px) {
+  #exploitContainer {
+    flex-direction: row !important;
+  }
+  #exploit-status-panel,
+  #payloadsSection {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+}
+
+/* ===== Mochi v1 polish ===== */
+.mochi-brand-badge{
+  position:absolute;top:18px;right:18px;z-index:20;display:flex;align-items:center;gap:10px;
+  padding:10px 14px;border-radius:18px;background:rgba(42,24,48,.88);border:1px solid rgba(248,127,171,.24);
+  box-shadow:0 8px 24px rgba(10,4,15,.32);
+}
+.mochi-brand-badge img{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#ffe4f0,#e8d5ff);padding:3px}
+.mochi-brand-badge strong{display:block;font-size:14px;color:#FFE8F4;line-height:1.1}
+.mochi-brand-badge span{display:block;font-size:11px;color:#C49FCE;line-height:1.2}
+#initial-screen{background:
+  radial-gradient(ellipse at 80% -5%, rgba(196,168,232,0.18) 0%, transparent 40%),
+  radial-gradient(ellipse at 10% 90%, rgba(248,127,171,0.14) 0%, transparent 45%),
+  linear-gradient(180deg,#241227 0%,#1E1120 100%) !important;}
+#ps-logo-container{position:relative;overflow:hidden}
+#ps-logo-container::after{content:'✦';position:absolute;top:10px;right:18px;font-size:18px;color:rgba(255,232,244,.55)}
+#click-to-start-text{font-weight:800;letter-spacing:.02em}
+#PS4FW{color:rgba(255,232,244,.58)!important;font-size:15px!important}
+#choosejb-initial{max-width:560px!important}
+#DebugConsole{display:flex;align-items:center;justify-content:center;min-height:140px!important}
+#DebugConsole pre{font-size:24px!important;line-height:1.35!important;text-align:center!important;color:#FFE8F4!important;font-family:'Nunito',sans-serif!important;font-weight:900!important;white-space:pre-wrap!important}
+#successRate{display:none!important}
+#payloads-section-title{letter-spacing:-.02em}
+@media(max-width:700px){.mochi-brand-badge{position:static;margin:0 auto 16px}}
