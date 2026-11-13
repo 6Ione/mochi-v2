@@ -36,10 +36,25 @@
         var fillEl = document.getElementById('progressFill');
         var frame = document.getElementById('cacheFrame');
 
+        // A failed AppCache operation must not trap the PS4 in this screen.
+        var cacheFinished = false;
+        var cacheWatchdog = setTimeout(function () {
+            finishCache('Cache timed out; continuing without offline cache.', 1800);
+        }, 15000);
+        function finishCache(message, delay) {
+            if (cacheFinished) return;
+            cacheFinished = true;
+            clearTimeout(cacheWatchdog);
+            statusEl.textContent = message;
+            setTimeout(function () {
+                window.location.replace(mainPage);
+            }, delay);
+        }
+
         // Listen for postMessages from the iframe (iframe_cache.js)
         window.addEventListener('message', function (event) {
             var data = event.data;
-            if (!data || !data.type) return;
+            if (cacheFinished || event.origin !== window.location.origin || !data || !data.type) return;
 
             if (data.type === 'CACHE_PROGRESS') {
                 if (data.percent >= 0) {
@@ -51,9 +66,7 @@
             } else if (data.type === 'CACHE_COMPLETE' || data.type === 'CACHE_EXISTS') {
                 fillEl.style.width = '100%';
                 statusEl.textContent = data.type === 'CACHE_EXISTS' ? 'Already cached! Redirecting...' : 'Done! Redirecting...';
-                setTimeout(function () {
-                    window.location.replace(mainPage);
-                }, 1000);
+                finishCache(statusEl.textContent, 1000);
 
             } else if (data.type === 'CACHE_CHECKING') {
                 statusEl.textContent = 'Checking cache...';
@@ -62,14 +75,13 @@
             } else if (data.type === 'CACHE_ERROR') {
                 var reason = data.reason || 'Unknown error';
                 statusEl.textContent = 'Cache error: ' + reason;
-                setTimeout(function () {
-                    window.location.replace(mainPage);
-                }, 3000);
+                finishCache('Cache unavailable: ' + reason + '. Continuing online.', 1800);
             }
         }, false);
 
         // Load the firmware-based cache page into the hidden iframe
         statusEl.textContent = 'Starting cache for firmware ' + (fwVersion || 'unknown') + '...';
+        frame.onerror = function () { finishCache('Cache asset failed; continuing online.', 1800); };
         frame.src = targetPage;
     </script>
 </body>
